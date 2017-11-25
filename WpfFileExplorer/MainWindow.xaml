@@ -1,0 +1,164 @@
+﻿<Window x:Class="WpfFileExplorer.MainWindow"
+  
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:WpfFileExplorer"
+        
+    Title="MainWindow"
+    
+    AllowsTransparency="True"
+    Width="1070"
+    Height="600"
+    Background="Transparent"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle ="None"
+    mc:Ignorable="d">
+
+
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="{Binding  ResizeBorderThickness}"/>
+    </WindowChrome.WindowChrome>
+
+
+    <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Title bar -->
+
+
+
+        <StackPanel Margin="0,0,0,474" Orientation="Vertical" Grid.ColumnSpan="2">
+            <Grid Background="White" Panel.ZIndex="1" Opacity="0.8" Height="126">
+
+
+
+                <Grid.ColumnDefinitions>
+                    <!-- Icon-->
+                    <ColumnDefinition Width="Auto" MinWidth="84"/>
+                    <!--Title-->
+                    <ColumnDefinition/>
+                    <!--Windows Button-->
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Window Buttons-->
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,93">
+
+
+
+
+                </StackPanel>
+
+
+            </Grid>
+        </StackPanel>
+
+
+
+
+
+
+
+
+
+        <Rectangle     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.8" Fill="White" Grid.ColumnSpan="2"/>
+
+
+        <StackPanel Margin="0,126,560,0" Orientation="Vertical">
+            <Grid >
+
+                <TreeView x:Name="FolderView" HorizontalAlignment="Left" Height="474" VerticalAlignment="Bottom" Width="243" Opacity="0.8" Foreground="White" BorderBrush="White" FontFamily="Century Gothic" SelectedItemChanged="SelectedItem">
+                    <TreeView.Resources>
+
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="20" Margin="5"                           
+                                            Source="{Binding Tag, Converter={x:Static local:HeaderToImageConverter.Instance}, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}, Mode=FindAncestor}}" Visibility="Visible" ClipToBounds="False" SnapsToDevicePixels="False" OpacityMask="{x:Null}" />
+                                            <TextBlock VerticalAlignment="Center" Text="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TreeView.Resources>
+                </TreeView>
+
+            </Grid>
+        </StackPanel>
+
+
+
+        <TextBox  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="Search" VerticalAlignment="Top" Width="240" Margin="17,92,0,0" Grid.Column="1"/>
+        <ComboBox Opacity="0.8" HorizontalAlignment="Left" VerticalAlignment="Top" Width="567" Margin="248,92,0,0" Grid.ColumnSpan="2" BorderBrush="White" Foreground="White" Background="White" UseLayoutRounding="False" Height="22"/>
+
+
+        <ListBox x:Name="myList"
+                     HorizontalContentAlignment="Stretch"
+                     AlternationCount="2"
+                     
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     Background="White"
+                     Opacity="0.6"
+                     BorderBrush="Transparent"
+                     ItemContainerStyle="{StaticResource alternatingWithTriggers}"
+                     Style="{StaticResource selectedItemStyle}"
+                     Margin="243,126,0,-1"
+                     SelectionChanged="SingleFileSelected"
+                     MouseDoubleClick="ItemMouseDoubleClick" Grid.ColumnSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="left"
+                                    Width="100"
+                                    Orientation="Vertical">
+                        <Image Source="{Binding FileImage}"
+                                   Width="20"
+                                   HorizontalAlignment="Center" />
+
+                        <Label Grid.Column="1"
+                                   Content="{Binding FileName}"
+                                   HorizontalContentAlignment="Center" />
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"
+                                   ItemWidth="100"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+        </ListBox>
+        
+        
+        
+        
+        
+        <Button  Grid.Column="1" HorizontalAlignment="Left" Margin="193,0,0,0" VerticalAlignment="Top" Width="72" Height="35" Click="Button_Click">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="Image/close.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+
+
+    </Grid>
+
+</Window>

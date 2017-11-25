@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfFileExplorer.Styles">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <Style x:Key="alternatingWithTriggers"
+               TargetType="{x:Type ListBoxItem}">
+        <Style.Triggers>
+            <Trigger Property="ListBox.AlternationIndex"
+                         Value="0">
+                <Setter Property="Background"
+                            Value="#FFEBEBEB" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    
+    <Style x:Key="selectedItemStyle">
+        <Style.Resources>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                 Color="LightGray" />
+        </Style.Resources>
+    </Style>
+    
+    
+</ResourceDictionary>
